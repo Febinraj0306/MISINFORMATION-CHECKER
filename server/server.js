@@ -15,23 +15,8 @@ const isDev = process.env.NODE_ENV !== 'production';
 // ── Security Headers (helmet) ──────────────────────────────────────────────
 app.use(helmet());
 
-// ── CORS — only allow the local Vite dev server (and production origin) ────
-const ALLOWED_ORIGINS = [
-  'http://localhost:5173',
-  'http://localhost:5174',
-  'http://localhost:3000',
-  ...(process.env.CLIENT_ORIGIN ? [process.env.CLIENT_ORIGIN] : []),
-];
-app.use(cors({
-  origin: (origin, callback) => {
-    // Allow requests with no origin (curl, health checks) in dev only
-    if (!origin && isDev) return callback(null, true);
-    if (!origin || ALLOWED_ORIGINS.includes(origin)) return callback(null, true);
-    callback(new Error(`CORS: Origin ${origin} not allowed.`));
-  },
-  methods: ['GET', 'POST'],
-  allowedHeaders: ['Content-Type'],
-}));
+// ── CORS — Allow all origins for public API access ─────────────────────────
+app.use(cors());
 
 // ── Body Parser — limit request size to prevent payload attacks ───────────
 app.use(express.json({ limit: '50kb' }));
