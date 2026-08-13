@@ -20,6 +20,8 @@ import {
 } from 'lucide-react';
 import Tesseract from 'tesseract.js';
 
+const API_BASE = import.meta.env.VITE_API_URL || '';
+
 export default function App() {
   const [claim, setClaim] = useState('');
   const [loading, setLoading] = useState(false);
@@ -35,7 +37,7 @@ export default function App() {
   // Fetch recent check history from the backend
   const fetchHistory = async () => {
     try {
-      const res = await fetch('/api/history');
+      const res = await fetch(`${API_BASE}/api/history`);
       if (res.ok) {
         const data = await res.json();
         setHistory(data);
@@ -77,7 +79,7 @@ export default function App() {
     }, 2000);
 
     try {
-      const res = await fetch('/api/check', {
+      const res = await fetch(`${API_BASE}/api/check`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
