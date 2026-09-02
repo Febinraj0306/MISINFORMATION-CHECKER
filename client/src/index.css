@@ -78,6 +78,27 @@
   animation: shimmer 1.5s infinite linear;
 }
 
+/* Fade-in animation — used in result card and loading overlay */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.35s ease-out both;
+}
+
+/* Radial gradient background — replaces bg-radial Tailwind utility */
+.bg-radial {
+  background: radial-gradient(ellipse at top, #151c2d 0%, #0b0f19 50%, #05070c 100%);
+}
+
 /* Custom styling for body font */
 body {
   font-family: var(--font-sans);

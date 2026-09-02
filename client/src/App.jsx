@@ -253,7 +253,7 @@ Reasoning: ${result.reasoning}
   const activeTheme = result ? getVerdictTheme(result.verdict) : null;
 
   return (
-    <div className="min-h-screen bg-radial from-[#151c2d] via-[#0b0f19] to-[#05070c] pb-12">
+    <div className="min-h-screen bg-radial pb-12">
       {/* Top Banner / Navbar */}
       <header className="border-b border-gray-800 bg-slate-950/60 backdrop-blur-md sticky top-0 z-50">
         <div className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
